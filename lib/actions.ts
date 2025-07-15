@@ -105,3 +105,14 @@ export async function getSubmissionById(id: string) { // Change number to string
     throw new Error("Failed to get submission")
   }
 }
+
+export const getAllSubmissions = async () => {
+  try {
+    return await prisma.handover.findMany({
+      orderBy: { createdAt: 'desc' }
+    });
+  } catch (error) {
+    console.error('Failed to fetch submissions:', error);
+    throw error;
+  }
+};
